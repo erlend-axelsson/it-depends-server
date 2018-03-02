@@ -1,0 +1,46 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "authentication": {
+    "secret": "Your sufficiently long and secure secret",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  },
+  "nedb": "../data",
+  "dbUrl": "http://yourNeo4j.url/db/data/transaction/commit",
+  "dbInit": {
+    "method": "POST",
+    "headers": {
+      "Cache-Control": "no-cache",
+      "Authorization": "Basic your Basic auth for neo4j",
+      "Content-Type": "application/json",
+      "Accept": "application/json; charset=UTF-8"
+    },
+    "mode": "cors",
+    "cache": "no-cache"
+  }
+}
